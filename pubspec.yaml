@@ -1,0 +1,38 @@
+name: animu
+description: Companion App for Animu Discord Bot
+version: 0.0.2+2
+
+environment:
+  sdk: '>=2.2.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+
+  http: ^0.12.0+2
+  flutter_secure_storage: ^3.3.1+1
+  flare_flutter: ^1.7.1
+  wave: ^0.0.8
+  bubble_bottom_bar: ^1.2.0
+  charts_flutter: ^0.8.1
+  timeago: ^2.0.22
+  gradient_widgets: ^0.5.0
+  flutter_spinkit: ^4.0.0
+  flutter_launcher_icons: '^0.7.3'
+  flutter_chips_input: ^1.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  android: 'ic_launcher'
+  ios: true
+  image_path: 'assets/logo.png'
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
