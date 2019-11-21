@@ -8,6 +8,7 @@ View analytics of your server
 
 - No. of active members
 - Graph showing members growth in past 7 days (can be changed to 7 days, 14 Days, 30 days, 90 days)
+- Graph showing members joined rate in past 7 days (can be changed to 7 days, 14 Days, 30 days, 90 days)
 
 ### Logs
 
@@ -32,6 +33,7 @@ View level-up related settings & leaderboards
 
 View server settings
 
+- Disabled Commands (Modal)
 - Log Out
 
 ## For later

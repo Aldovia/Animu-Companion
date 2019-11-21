@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
 
   int activeMembersCount;
   List<TimeSeriesMembers> growthRate = [];
+  List<TimeSeriesMembers> joinedRate = [];
 
   @override
   void initState() {
@@ -28,34 +29,47 @@ class _HomeState extends State<Home> {
   }
 
   void fetchData() async {
-    final http.Response resRaw =
-        await http.get('$serverAddress/api/guild?token=${widget.token}');
+    final List<http.Response> dataRaw = await Future.wait([
+      http.get('$serverAddress/api/guild?token=${widget.token}'),
+      http.get('$serverAddress/api/growth?token=${widget.token}&cycle=7'),
+      http.get('$serverAddress/api/joined?token=${widget.token}&cycle=7'),
+    ]);
 
-    final http.Response growthResRaw = await http
-        .get('$serverAddress/api/growth?token=${widget.token}&cycle=7');
+    final List data = dataRaw.map((d) => jsonDecode(d.body)).toList();
 
-    final Map res = jsonDecode(resRaw.body);
-    final Map growthRes = jsonDecode(growthResRaw.body);
+    final Map guildRes = data[0];
+    final Map growthRes = data[1];
+    final Map joinedRes = data[2];
 
     setState(() {
       isLoading = false;
-      activeMembersCount = res['guild']['onlineMemberCount'];
+      activeMembersCount = guildRes['guild']['onlineMemberCount'];
 
       for (var i = 0; i < growthRes['growth'].length; i++) {
         growthRate.add(
           TimeSeriesMembers(
-              DateTime.now().subtract(
-                Duration(days: i),
-              ),
-              growthRes['growth'][i]),
+            DateTime.now().subtract(
+              Duration(days: i),
+            ),
+            growthRes['growth'][i],
+          ),
+        );
+      }
+
+      for (var i = 0; i < joinedRes['joined'].length; i++) {
+        joinedRate.add(
+          TimeSeriesMembers(
+            DateTime.now().subtract(
+              Duration(days: i),
+            ),
+            joinedRes['joined'][i],
+          ),
         );
       }
     });
   }
 
   void fetchDaysGrowth(int days) async {
-    print('Fetching data for $days days');
-
     final http.Response growthResRaw = await http
         .get('$serverAddress/api/growth?token=${widget.token}&cycle=$days');
     final Map growthRes = jsonDecode(growthResRaw.body);
@@ -66,16 +80,40 @@ class _HomeState extends State<Home> {
       for (var i = 0; i < growthRes['growth'].length; i++) {
         growthRate.add(
           TimeSeriesMembers(
-              DateTime.now().subtract(
-                Duration(days: i),
-              ),
-              growthRes['growth'][i]),
+            DateTime.now().subtract(
+              Duration(days: i),
+            ),
+            growthRes['growth'][i],
+          ),
         );
       }
     });
   }
 
-  List<charts.Series<TimeSeriesMembers, DateTime>> _createSampleData() {
+  void fetchJoinedGrowth(int days) async {
+    final http.Response joinedResRaw = await http
+        .get('$serverAddress/api/joined?token=${widget.token}&cycle=$days');
+    final Map joinedRes = jsonDecode(joinedResRaw.body);
+
+    joinedRate.clear();
+
+    setState(() {
+      for (var i = 0; i < joinedRes['joined'].length; i++) {
+        joinedRate.add(
+          TimeSeriesMembers(
+            DateTime.now().subtract(
+              Duration(days: i),
+            ),
+            joinedRes['joined'][i],
+          ),
+        );
+      }
+    });
+  }
+
+  List<charts.Series<TimeSeriesMembers, DateTime>> _createGrowthData() {
+    print(growthRate.length);
+
     return [
       charts.Series<TimeSeriesMembers, DateTime>(
         id: 'Members Over Time',
@@ -83,6 +121,18 @@ class _HomeState extends State<Home> {
         domainFn: (TimeSeriesMembers members, _) => members.time,
         measureFn: (TimeSeriesMembers members, _) => members.members,
         data: growthRate,
+      )
+    ];
+  }
+
+  List<charts.Series<TimeSeriesMembers, DateTime>> _createJoinedData() {
+    return [
+      charts.Series<TimeSeriesMembers, DateTime>(
+        id: 'Members Joined Over Time',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (TimeSeriesMembers members, _) => members.time,
+        measureFn: (TimeSeriesMembers members, _) => members.members,
+        data: joinedRate,
       )
     ];
   }
@@ -134,7 +184,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
 
-                    // Growth over past 7 days
+                    // Growth over past x days
                     Card(
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(32.0, 32.0, 16.0, 16.0),
@@ -151,7 +201,7 @@ class _HomeState extends State<Home> {
                             SizedBox(
                               height: 200.0,
                               child: charts.TimeSeriesChart(
-                                _createSampleData(),
+                                _createGrowthData(),
                                 animate: true,
                                 behaviors: [
                                   charts.SeriesLegend(
@@ -169,6 +219,55 @@ class _HomeState extends State<Home> {
                                 value: growthRate.length,
                                 onChanged: (newValue) {
                                   fetchDaysGrowth(newValue);
+                                },
+                                items: [7, 14, 30, 60, 90].map((days) {
+                                  return DropdownMenuItem(
+                                    child: new Text('${days.toString()} Days'),
+                                    value: days,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    // Joined over past x days
+                    Card(
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(32.0, 32.0, 16.0, 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Text(
+                              'Joined over past ${growthRate.length} days',
+                              style: Constants().headingStyle,
+                            ),
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            SizedBox(
+                              height: 200.0,
+                              child: charts.TimeSeriesChart(
+                                _createJoinedData(),
+                                animate: true,
+                                behaviors: [
+                                  charts.SeriesLegend(
+                                    position: charts.BehaviorPosition.bottom,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: DropdownButton(
+                                value: growthRate.length,
+                                onChanged: (newValue) {
+                                  fetchJoinedGrowth(newValue);
                                 },
                                 items: [7, 14, 30, 60, 90].map((days) {
                                   return DropdownMenuItem(
