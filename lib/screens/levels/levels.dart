@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:animu/screens/levels/level_leaderboards.dart';
+import 'package:animu/screens/levels/level_perks.dart';
 import 'package:animu/screens/levels/level_settings.dart';
 import 'package:animu/shared/config.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,7 @@ class _LevelsState extends State<Levels> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Container(
         color: Colors.white,
         child: Center(
@@ -94,6 +95,9 @@ class _LevelsState extends State<Levels> {
                         Tab(
                           icon: Icon(Icons.settings, color: Colors.black),
                         ),
+                        Tab(
+                          icon: Icon(Icons.star, color: Colors.black),
+                        ),
                       ],
                     ),
                   ),
@@ -111,6 +115,13 @@ class _LevelsState extends State<Levels> {
                               child: Text('Enable Levels to view Settings'),
                             )
                           : LevelSettings(
+                              token: widget.token,
+                            ),
+                      !areLevelsOn
+                          ? Center(
+                              child: Text('Enable Levels to view Level Perks'),
+                            )
+                          : LevelPerks(
                               token: widget.token,
                             ),
                     ],

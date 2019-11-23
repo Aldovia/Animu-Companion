@@ -47,50 +47,51 @@ class _LevelSettingsState extends State<LevelSettings> {
     final Map rolesFetched = data[1];
     final Map channelsFetched = data[2];
 
-    setState(() {
-      isLoading = false;
+    if (mounted)
+      setState(() {
+        isLoading = false;
 
-      expRateSliderVal = settings['settings']['expRate'];
-      expTimeSliderVal = settings['settings']['expTime'];
+        expRateSliderVal = settings['settings']['expRate'];
+        expTimeSliderVal = settings['settings']['expTime'];
 
-      for (var i = 0; i < rolesFetched['roles'].length; i++) {
-        roles.add(
-          Role(
-            id: rolesFetched['roles'][i]['id'],
-            name: rolesFetched['roles'][i]['name'],
-          ),
-        );
-      }
+        for (var i = 0; i < rolesFetched['roles'].length; i++) {
+          roles.add(
+            Role(
+              id: rolesFetched['roles'][i]['id'],
+              name: rolesFetched['roles'][i]['name'],
+            ),
+          );
+        }
 
-      for (var i = 0; i < channelsFetched['channels'].length; i++) {
-        channels.add(
-          TextChannel(
-            id: channelsFetched['channels'][i]['id'],
-            name: channelsFetched['channels'][i]['name'],
-          ),
-        );
-      }
+        for (var i = 0; i < channelsFetched['channels'].length; i++) {
+          channels.add(
+            TextChannel(
+              id: channelsFetched['channels'][i]['id'],
+              name: channelsFetched['channels'][i]['name'],
+            ),
+          );
+        }
 
-      for (var i = 0;
-          i < settings['settings']['ignoreLevelRoles'].length;
-          i++) {
-        final Role tempRole = roles.firstWhere(
-            (r) => r.id == settings['settings']['ignoreLevelRoles'][i]);
-        blacklistedRoles.add(
-          Role(id: tempRole.id, name: tempRole.name),
-        );
-      }
+        for (var i = 0;
+            i < settings['settings']['ignoreLevelRoles'].length;
+            i++) {
+          final Role tempRole = roles.firstWhere(
+              (r) => r.id == settings['settings']['ignoreLevelRoles'][i]);
+          blacklistedRoles.add(
+            Role(id: tempRole.id, name: tempRole.name),
+          );
+        }
 
-      for (var i = 0;
-          i < settings['settings']['ignoreExpChannels'].length;
-          i++) {
-        final TextChannel tempChannel = channels.firstWhere(
-            (r) => r.id == settings['settings']['ignoreExpChannels'][i]);
-        blacklistedChannels.add(
-          TextChannel(id: tempChannel.id, name: tempChannel.name),
-        );
-      }
-    });
+        for (var i = 0;
+            i < settings['settings']['ignoreExpChannels'].length;
+            i++) {
+          final TextChannel tempChannel = channels.firstWhere(
+              (r) => r.id == settings['settings']['ignoreExpChannels'][i]);
+          blacklistedChannels.add(
+            TextChannel(id: tempChannel.id, name: tempChannel.name),
+          );
+        }
+      });
   }
 
   void updateExpRate(val) async {

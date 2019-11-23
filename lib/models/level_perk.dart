@@ -1,6 +1,8 @@
 class LevelPerk {
   int level;
-  List<Map<String, dynamic>> perks = [];
+  dynamic badge;
+  dynamic role;
+  dynamic rep;
 
-  LevelPerk({this.level, this.perks});
+  LevelPerk({this.level, this.badge, this.role, this.rep});
 }
