@@ -241,7 +241,7 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             Text(
-                              'Joined over past ${growthRate.length} days',
+                              'Joined over past ${joinedRate.length} days',
                               style: Constants().headingStyle,
                             ),
                             SizedBox(
@@ -265,7 +265,7 @@ class _HomeState extends State<Home> {
                             Align(
                               alignment: Alignment.bottomRight,
                               child: DropdownButton(
-                                value: growthRate.length,
+                                value: joinedRate.length,
                                 onChanged: (newValue) {
                                   fetchJoinedGrowth(newValue);
                                 },
