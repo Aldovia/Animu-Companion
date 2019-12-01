@@ -1,14 +1,17 @@
+import 'package:animu/bloc/blocs/auth_bloc.dart';
+import 'package:animu/bloc/events/auth_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Settings extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   final Function clearToken;
-  Settings({this.clearToken});
+  SettingsPage({this.clearToken});
 
   @override
-  _SettingsState createState() => _SettingsState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,12 +35,8 @@ class _SettingsState extends State<Settings> {
                   leading: Icon(Icons.power_settings_new, color: Colors.red),
                   title: Text('Log Out'),
                   onTap: () {
-                    Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Logging Out'),
-                      ),
-                    );
-                    widget.clearToken();
+                    BlocProvider.of<AuthenticationBloc>(context)
+                        .add(LoggedOut());
                   },
                 ),
               ],

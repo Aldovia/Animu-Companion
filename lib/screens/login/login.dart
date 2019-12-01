@@ -1,194 +1,49 @@
-import 'dart:convert';
-
-import 'package:animu/shared/config.dart';
+import 'package:animu/bloc/blocs/auth_bloc.dart';
+import 'package:animu/bloc/blocs/login_bloc.dart';
+import 'package:animu/bloc/repos/auth_repo.dart';
+import 'package:animu/screens/login/login_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:gradient_widgets/gradient_widgets.dart';
-import 'package:http/http.dart' as http;
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Login extends StatefulWidget {
-  final Function setToken;
-  final signOut;
-  Login({this.setToken, this.signOut});
+class Login extends StatelessWidget {
+  final AuthRepository authRepository;
 
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  final storage = FlutterSecureStorage();
-
-  String msg = 'Enter your Animu Token to continue';
-  Color msgColor = Colors.grey;
-  String token = '';
+  Login({Key key, @required this.authRepository})
+      : assert(authRepository != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              child: Stack(
-                children: <Widget>[
-                  WavyHeader(),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(70.0, 100.0, 20.0, 0),
-                    child: Image.asset('assets/login_logo.png'),
-                  ),
-                ],
-              ),
-            ),
-            flex: 3,
-          ),
-          Expanded(
-            child: Container(
-              width: 300.0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                      horizontal: 30.0,
+      body: BlocProvider(
+        builder: (context) {
+          return LoginBloc(
+            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            authRepository: authRepository,
+          );
+        },
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                child: Stack(
+                  children: <Widget>[
+                    WavyHeader(),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(70.0, 100.0, 20.0, 0),
+                      child: Image.asset('assets/login_logo.png'),
                     ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Animu Token',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[400],
-                          fontSize: 14.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Material(
-                        elevation: 10.0,
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30.0),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 40.0,
-                            right: 20.0,
-                            top: 10.0,
-                            bottom: 10.0,
-                          ),
-                          child: TextField(
-                            onChanged: (val) => token = val,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "XXXXXXXXXXXXXXXX",
-                              hintStyle: TextStyle(
-                                color: Color(0xFFE1E1E1),
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 125.0,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 35, 15, 0),
-                                  child: Text(
-                                    msg,
-                                    style: TextStyle(
-                                      color: msgColor,
-                                      fontSize: 10.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              CircularGradientButton(
-                                child: Icon(Icons.arrow_forward),
-                                callback: () async {
-                                  if (token.isEmpty)
-                                    return setState(() {
-                                      msg =
-                                          'Please provide Animu token to proceed';
-                                      msgColor = Colors.red;
-                                    });
-
-                                  final http.Response resRaw = await http.get(
-                                      '$serverAddress/api/auth?token=$token');
-
-                                  final Map res = jsonDecode(resRaw.body);
-
-                                  if (!res.containsKey('guildID'))
-                                    return setState(() {
-                                      msg = 'Invalid token';
-                                      msgColor = Colors.red;
-                                    });
-
-                                  setState(() {
-                                    msg = 'Logging In';
-                                    msgColor = Colors.grey;
-                                  });
-
-                                  widget.setToken(token);
-                                },
-                                gradient: Gradients.cosmicFusion,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            flex: 2,
-          ),
-          Expanded(
-            child: Container(
-              child: WaveWidget(
-                config: CustomConfig(
-                  gradients: [
-                    [Colors.blue[100], Colors.blue[300]],
-                    [Colors.blue[400], Colors.blue[500]],
-                    [Colors.blue[600], Colors.blue[700]],
-                    [Colors.blue[500], Colors.blue[900]],
                   ],
-                  durations: [35000, 19440, 10800, 6000],
-                  heightPercentages: [0.20, 0.23, 0.25, 0.30],
-                  blur: MaskFilter.blur(BlurStyle.solid, 10),
-                  gradientBegin: Alignment.bottomLeft,
-                  gradientEnd: Alignment.topRight,
-                ),
-                duration: 32000,
-                waveAmplitude: 0,
-                heightPercentange: 0.25,
-                size: Size(
-                  double.infinity,
-                  double.infinity,
                 ),
               ),
+              flex: 3,
             ),
-            flex: 2,
-          )
-        ],
+            Expanded(
+              child: LoginForm(),
+              flex: 3,
+            ),
+          ],
+        ),
       ),
     );
   }

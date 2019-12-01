@@ -1,14 +1,19 @@
+import 'package:animu/bloc/blocs/levels_bloc.dart';
+import 'package:animu/bloc/events/levels_event.dart';
+import 'package:animu/bloc/repos/animu_repo.dart';
 import 'package:animu/screens/home/home.dart';
 import 'package:animu/screens/levels/levels.dart';
 import 'package:animu/screens/logs/logs.dart';
 import 'package:animu/screens/settings/settings.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Wrapper extends StatefulWidget {
+  final AnimuRepository animuRepository;
   final String token;
   final Function clearToken;
-  Wrapper({this.token, this.clearToken});
+  Wrapper({@required this.animuRepository, this.token, this.clearToken});
 
   @override
   _WrapperState createState() => _WrapperState();
@@ -32,15 +37,21 @@ class _WrapperState extends State<Wrapper> {
           index: currentIndex,
           children: <Widget>[
             Home(
-              token: widget.token,
+              animuRepository: widget.animuRepository,
             ),
             Logs(
-              token: widget.token,
+              animuRepository: widget.animuRepository,
             ),
-            Levels(
-              token: widget.token,
+            BlocProvider(
+              builder: (context) {
+                return LevelsBloc(animuRepository: widget.animuRepository)
+                  ..add(FetchLevels());
+              },
+              child: Levels(
+                animuRepository: widget.animuRepository,
+              ),
             ),
-            Settings(
+            SettingsPage(
               clearToken: widget.clearToken,
             ),
           ],

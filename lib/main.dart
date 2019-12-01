@@ -1,10 +1,61 @@
-import 'package:animu/screens/root.dart';
+import 'package:animu/bloc/blocs/auth_bloc.dart';
+import 'package:animu/bloc/events/auth_event.dart';
+import 'package:animu/bloc/repos/animu_api_client.dart';
+import 'package:animu/bloc/repos/animu_repo.dart';
+import 'package:animu/bloc/repos/auth_repo.dart';
+import 'package:animu/bloc/states/auth_state.dart';
+import 'package:animu/screens/loading/loading.dart';
+import 'package:animu/screens/login/login.dart';
+import 'package:animu/screens/splash/splash.dart';
+import 'package:animu/screens/wrapper/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 
-void main() => runApp(Animu());
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    super.onEvent(bloc, event);
+    print(event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
+
+  @override
+  void onError(Bloc bloc, Object error, StackTrace stacktrace) {
+    super.onError(bloc, error, stacktrace);
+    print(error);
+  }
+}
+
+void main() async {
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+  final AuthRepository authRepository = AuthRepository();
+
+  runApp(
+    BlocProvider<AuthenticationBloc>(
+      builder: (context) {
+        return AuthenticationBloc(authRepository: authRepository)
+          ..add(AppStarted());
+      },
+      child: Animu(
+        authRepository: authRepository,
+      ),
+    ),
+  );
+}
 
 class Animu extends StatelessWidget {
+  final AuthRepository authRepository;
+
+  Animu({Key key, @required this.authRepository}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -16,10 +67,30 @@ class Animu extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Root(),
-      },
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is AuthenticationUninitialized) return Splash();
+
+          if (state is AuthenticationAuthenticated) {
+            return Wrapper(
+              animuRepository: AnimuRepository(
+                animuApiClient: AnimuApiClient(
+                  httpClient: http.Client(),
+                  token: state.token,
+                ),
+              ),
+            );
+          }
+
+          if (state is AuthenticationUnauthenticated)
+            return Login(authRepository: authRepository);
+
+          if (state is AuthenticationLoading) return Loading();
+
+          return Text(
+              "Hmmm, seems like you've tried to do something you weren't supposed to to");
+        },
+      ),
     );
   }
 }

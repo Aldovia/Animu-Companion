@@ -33,11 +33,4 @@ View level-up related settings & leaderboards
 
 View server settings
 
-- Disabled Commands (Modal)
 - Log Out
-
-## For later
-
-- Show user avatar in logs with a small icon in bottom right of avatar showing the log type
-- Show "Nothing found" or any other message when lists are empty: logs, leaderboards
-- Improve margins & paddings of scrollable content

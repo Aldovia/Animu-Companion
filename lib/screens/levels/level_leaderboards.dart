@@ -1,65 +1,25 @@
-import 'dart:convert';
-
-import 'package:animu/models/level_leaderboards_user.dart';
-import 'package:animu/shared/config.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:http/http.dart' as http;
+import 'package:animu/bloc/blocs/level_leaderboards_bloc.dart';
+import 'package:animu/bloc/states/level_leaderboards_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LevelLeaderboards extends StatefulWidget {
-  final String token;
-  LevelLeaderboards({this.token});
-
-  @override
-  _LevelLeaderboardsState createState() => _LevelLeaderboardsState();
-}
-
-class _LevelLeaderboardsState extends State<LevelLeaderboards> {
-  bool isLoading = true;
-
-  List<LevelLeaderboardsUser> users = [];
-
-  @override
-  void initState() {
-    super.initState();
-    fetchLeaderboards();
-  }
-
-  void fetchLeaderboards() async {
-    final http.Response resRaw = await http
-        .get('$serverAddress/api/leaderboards/levels?token=${widget.token}');
-
-    final Map res = jsonDecode(resRaw.body);
-
-    if (mounted)
-      setState(() {
-        isLoading = false;
-
-        for (var i = 0; i < res['members'].length; i++) {
-          users.add(
-            LevelLeaderboardsUser(
-              avatarUrl: res['members'][i]['avatarURL'],
-              username: res['members'][i]['username'],
-              level: res['members'][i]['level'],
-            ),
-          );
-        }
-      });
-  }
-
+class LevelLeaderboards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? SpinKitRotatingCircle(
-            color: Colors.blue,
-            size: 50.0,
-          )
-        : Container(
+    return BlocBuilder<LevelLeaderboardsBloc, LevelLeaderboardsState>(
+      builder: (context, state) {
+        if (state is LevelLeaderboardsLoading)
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+
+        if (state is LevelLeaderboardsLoaded)
+          return Container(
             child: Column(
               children: <Widget>[
                 Expanded(
                   child: ListView.builder(
-                    itemCount: users.length,
+                    itemCount: state.levelLeaderboardsUsers.length,
                     itemBuilder: (BuildContext context, int i) {
                       return Column(
                         children: <Widget>[
@@ -81,19 +41,20 @@ class _LevelLeaderboardsState extends State<LevelLeaderboards> {
                                       width: 10.0,
                                     ),
                                   CircleAvatar(
-                                    backgroundImage:
-                                        NetworkImage(users[i].avatarUrl),
+                                    backgroundImage: NetworkImage(state
+                                        .levelLeaderboardsUsers[i].avatarUrl),
                                   ),
                                 ],
                               ),
                             ),
                             title: Text(
-                              users[i].username.length > 20
-                                  ? '${users[i].username.substring(0, 20)}...'
-                                  : users[i].username,
+                              state.levelLeaderboardsUsers[i].username.length >
+                                      20
+                                  ? '${state.levelLeaderboardsUsers[i].username.substring(0, 20)}...'
+                                  : state.levelLeaderboardsUsers[i].username,
                             ),
                             trailing: Text(
-                              users[i].level.toString(),
+                              state.levelLeaderboardsUsers[i].level.toString(),
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 18.0,
@@ -109,5 +70,14 @@ class _LevelLeaderboardsState extends State<LevelLeaderboards> {
               ],
             ),
           );
+
+        if (state is LevelLeaderboardsError)
+          return Center(
+            child: Text('An unexpected error occured'),
+          );
+
+        return Text('...');
+      },
+    );
   }
 }
