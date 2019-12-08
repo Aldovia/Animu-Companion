@@ -15,7 +15,7 @@ import 'package:meta/meta.dart';
 
 class AnimuApiClient {
   static const baseUrl = 'http://140.82.39.61:8080'; // Public
-      // 'http://192.168.1.105:8080'; // Dev testing
+  // 'http://192.168.1.105:8080'; // Dev testing
 
   final http.Client httpClient;
   final String token;
@@ -70,6 +70,7 @@ class AnimuApiClient {
   Future<List<Log>> fetchLogs({int limit = 20, int offset = 0}) async {
     final String logsUrl =
         '$baseUrl/api/logs?token=$token&limit=$limit&offset=$offset';
+
     final http.Response logsResponse = await http.get(logsUrl);
 
     if (logsResponse.statusCode != 200) {

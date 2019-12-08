@@ -2,6 +2,7 @@ import 'package:animu/bloc/blocs/level_settings_bloc.dart';
 import 'package:animu/bloc/states/level_settings_state.dart';
 import 'package:animu/screens/levels/level_settings_blacklisted_channels_card.dart';
 import 'package:animu/screens/levels/level_settings_blacklisted_roles_card.dart';
+import 'package:animu/screens/levels/level_settings_exp_bottle_card.dart';
 import 'package:animu/screens/levels/level_settings_exp_rate_card.dart';
 import 'package:animu/screens/levels/level_settings_exp_time_card.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class LevelSettings extends StatelessWidget {
                 tiles: [
                   LevelSettingsBlacklistedRolesCard(),
                   LevelSettingsBlacklistedChannelsCard(),
+                  LevelSettingsExpBottleCard(),
                   LevelSettingsExpRateCard(),
                   LevelSettingsExpTimeCard(),
                 ],

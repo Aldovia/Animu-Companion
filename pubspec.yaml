@@ -1,6 +1,6 @@
 name: animu
 description: Companion App for Animu Discord Bot
-version: 0.1.0+4
+version: 0.1.1+5
 
 environment:
   sdk: '>=2.2.2 <3.0.0'
@@ -21,6 +21,8 @@ dependencies:
   flutter_launcher_icons: '^0.7.3'
   flutter_chips_input: ^1.6.0
   flutter_speed_dial: ^1.2.4
+  font_awesome_flutter: ^8.5.0
+  url_launcher: ^5.2.7
   bloc: ^2.0.0
   flutter_bloc: ^2.0.0
   equatable: ^1.0.1

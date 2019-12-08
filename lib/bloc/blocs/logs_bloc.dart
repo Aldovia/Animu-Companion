@@ -45,14 +45,13 @@ class LogsBloc extends Bloc<LogsEvent, LogsState> {
           final List<Log> logs = await animuRepository.getLogs(
               limit: 20, offset: currentState.logs.length);
 
-          print('LENGTH OF LOGS: ${logs.length}');
-
           yield logs.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
               : LogsLoaded(
                   logs: currentState.logs + logs, hasReachedMax: false);
         }
       } catch (e) {
+        print('Logs Error $e');
         yield LogsError();
       }
     }

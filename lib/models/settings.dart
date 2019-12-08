@@ -6,6 +6,7 @@ class Settings extends Equatable {
   final bool enableLevels;
   final int expRate;
   final int expTime;
+  final bool allowExpBottles;
   final List<TextChannel> ignoreExpChannels;
   final List<Role> ignoreLevelRoles;
 
@@ -13,12 +14,19 @@ class Settings extends Equatable {
       {this.enableLevels,
       this.expRate,
       this.expTime,
+      this.allowExpBottles,
       this.ignoreExpChannels,
       this.ignoreLevelRoles});
 
   @override
-  List<Object> get props =>
-      [enableLevels, expRate, expTime, ignoreExpChannels, ignoreLevelRoles];
+  List<Object> get props => [
+        enableLevels,
+        expRate,
+        expTime,
+        allowExpBottles,
+        ignoreExpChannels,
+        ignoreLevelRoles
+      ];
 
   static Settings fromJson(
       dynamic json, dynamic channelsJson, dynamic rolesJson) {
@@ -43,6 +51,7 @@ class Settings extends Equatable {
       enableLevels: json['enableLevels'],
       expRate: json['expRate'],
       expTime: json['expTime'],
+      allowExpBottles: json['allowExpBottles'],
       ignoreExpChannels: tempIgnoreExpChannels,
       ignoreLevelRoles: tempIgnoreLevelRoles,
     );
