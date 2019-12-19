@@ -1,3 +1,4 @@
+import 'package:animu/screens/login/login_qr_button.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:animu/screens/login/login_form.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,14 @@ class Login extends StatelessWidget {
                   ],
                 ),
               ),
-              flex: 3,
+              flex: 4,
             ),
             Expanded(
               child: LoginForm(),
+              flex: 3,
+            ),
+            Expanded(
+              child: LoginQRButton(),
               flex: 3,
             ),
           ],

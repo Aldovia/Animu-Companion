@@ -26,8 +26,7 @@ dependencies:
   url_launcher: ^5.2.7
   bloc: ^2.0.0
   flutter_bloc: ^2.0.0
-  equatable: ^1.0.1
-  meta: ^1.1.7
+  qr_code_scanner: ^0.0.12
   animu_common:
     path: ../animu_common
 
