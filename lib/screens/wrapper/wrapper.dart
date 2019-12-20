@@ -4,11 +4,9 @@ import 'package:animu/screens/levels/levels.dart';
 import 'package:animu/screens/logs/logs.dart';
 import 'package:animu/screens/rep/rep.dart';
 import 'package:animu/screens/settings/settings.dart';
-import 'package:animu/screens/upgrade/upgrade.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Wrapper extends StatefulWidget {
   final AnimuRepository animuRepository;
@@ -48,10 +46,8 @@ class _WrapperState extends State<Wrapper> {
             Rep(
               animuRepository: widget.animuRepository,
             ),
-            Upgrade(
-              animuRepository: widget.animuRepository,
-            ),
             SettingsPage(
+              animuRepository: widget.animuRepository,
               clearToken: widget.clearToken,
             ),
           ],
@@ -115,19 +111,6 @@ class _WrapperState extends State<Wrapper> {
                 color: Colors.orange[200],
               ),
               title: Text("Rep")),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.lime,
-              icon: Icon(
-                FontAwesomeIcons.crown,
-                size: 18.0,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                FontAwesomeIcons.crown,
-                size: 18.0,
-                color: Colors.lime,
-              ),
-              title: Text("Pro")),
           BubbleBottomBarItem(
               backgroundColor: Colors.red,
               icon: Icon(

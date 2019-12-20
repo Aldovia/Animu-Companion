@@ -15,6 +15,7 @@ class Upgrade extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           'Upgrade',
           style: TextStyle(
