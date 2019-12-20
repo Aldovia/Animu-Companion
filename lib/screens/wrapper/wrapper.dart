@@ -63,8 +63,6 @@ class _WrapperState extends State<Wrapper> {
         },
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         elevation: 8,
-        fabLocation: BubbleBottomBarFabLocation.end,
-        hasNotch: true,
         hasInk: true,
         items: <BubbleBottomBarItem>[
           BubbleBottomBarItem(
