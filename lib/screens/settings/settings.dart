@@ -1,3 +1,4 @@
+import 'package:animu/screens/toxicity_filters/toxicity_filters.dart';
 import 'package:animu/screens/upgrade/upgrade.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
@@ -35,17 +36,36 @@ class _SettingsPageState extends State<SettingsPage> {
               tiles: [
                 ListTile(
                   leading: Icon(
+                    Icons.chat_bubble_outline,
+                    color: Colors.black,
+                  ),
+                  title: Text('Toxicity Filters'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ToxicityFilters(
+                          animuRepository: widget.animuRepository,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
                     FontAwesomeIcons.crown,
                     color: Colors.lime,
                   ),
                   title: Text('Upgrade'),
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Upgrade(
-                                  animuRepository: widget.animuRepository,
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Upgrade(
+                          animuRepository: widget.animuRepository,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
