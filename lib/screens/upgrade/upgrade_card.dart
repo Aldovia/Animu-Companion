@@ -98,7 +98,7 @@ class UpgradeCard extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        'Lite',
+                        'Lite (\$5/month)',
                         style: Constants().headingStyle,
                       ),
                       SizedBox(
@@ -256,7 +256,7 @@ class UpgradeCard extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        'Plus',
+                        'Plus (\$10/month)',
                         style: Constants().headingStyle,
                       ),
                       SizedBox(
