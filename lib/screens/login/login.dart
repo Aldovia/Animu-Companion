@@ -1,10 +1,11 @@
 import 'package:animu/screens/login/login_qr_button.dart';
+import 'package:animu/screens/login/qr_login_view.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:animu/screens/login/login_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   final AuthRepository authRepository;
 
   Login({Key key, @required this.authRepository})
@@ -12,42 +13,60 @@ class Login extends StatelessWidget {
         super(key: key);
 
   @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  bool showQR = false;
+  String token;
+
+  showQRView() {
+    setState(() {
+      showQR = true;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) {
-          return LoginBloc(
-            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-            authRepository: authRepository,
-          );
-        },
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                child: Stack(
-                  children: <Widget>[
-                    WavyHeader(),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(70.0, 100.0, 20.0, 0),
-                      child: Image.asset('assets/login_logo.png'),
+    return BlocProvider(
+      create: (context) {
+        return LoginBloc(
+          authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+          authRepository: widget.authRepository,
+        );
+      },
+      child: showQR
+          ? QRLoginView()
+          : Scaffold(
+              body: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      child: Stack(
+                        children: <Widget>[
+                          WavyHeader(),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(70.0, 100.0, 20.0, 0),
+                            child: Image.asset('assets/login_logo.png'),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                    flex: 4,
+                  ),
+                  Expanded(
+                    child: LoginForm(),
+                    flex: 3,
+                  ),
+                  Expanded(
+                    child: LoginQRButton(
+                      showQRView: showQRView,
+                    ),
+                    flex: 3,
+                  ),
+                ],
               ),
-              flex: 4,
             ),
-            Expanded(
-              child: LoginForm(),
-              flex: 3,
-            ),
-            Expanded(
-              child: LoginQRButton(),
-              flex: 3,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
