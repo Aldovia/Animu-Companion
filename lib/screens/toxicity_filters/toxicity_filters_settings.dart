@@ -27,7 +27,7 @@ class ToxicityFiltersSettings extends StatelessWidget {
         );
 
       if (state is ToxicityFiltersSettingsUnavailable)
-        Container(
+        return Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
