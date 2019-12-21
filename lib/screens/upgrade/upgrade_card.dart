@@ -313,6 +313,21 @@ class UpgradeCard extends StatelessWidget {
                           child: ListTile(
                             leading: CircleAvatar(
                               child: Icon(
+                                Icons.chat_bubble_outline,
+                                color: Colors.white,
+                              ),
+                              backgroundColor: Colors.red,
+                            ),
+                            title: Text('Toxicity Filters'),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              child: Icon(
                                 FontAwesomeIcons.pencilRuler,
                                 color: Colors.white,
                               ),
