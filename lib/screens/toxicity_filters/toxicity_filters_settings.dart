@@ -258,7 +258,9 @@ class ToxicityFiltersSettings extends StatelessWidget {
                           labelText: 'Reports Channel',
                         ),
                         maxChips: 1,
-                        initialValue: [state.settings.logReports] ?? [],
+                        initialValue: state.settings.logReports != null
+                            ? [state.settings.logReports]
+                            : [],
                         findSuggestions: (String query) {
                           if (query.length != 0) {
                             var lowercaseQuery = query.toLowerCase();
