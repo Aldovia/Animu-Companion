@@ -1,7 +1,7 @@
 name: animu
 description: Companion App for Animu Discord Bot
 
-version: 0.2.0+6
+version: 0.3.1+8
 
 environment:
   sdk: '>=2.2.2 <3.0.0'
