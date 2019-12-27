@@ -44,7 +44,7 @@ class _LevelPerksNewRolePerkState extends State<LevelPerksNewRolePerk> {
             color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(10.0),
                   topRight: const Radius.circular(10.0),
@@ -62,10 +62,7 @@ class _LevelPerksNewRolePerkState extends State<LevelPerksNewRolePerk> {
                   children: <Widget>[
                     Text(
                       'Create New Perk',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey[600],
-                      ),
+                      style: Theme.of(context).textTheme.title,
                     ),
                     if (_showError)
                       SizedBox(

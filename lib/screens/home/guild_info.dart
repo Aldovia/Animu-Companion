@@ -1,5 +1,4 @@
 import 'package:animu_common/animu_common.dart';
-import 'package:animu/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +21,7 @@ class GuildInfo extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Active Now',
-                    style: Constants().headingStyle,
+                    style: Theme.of(context).textTheme.title,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -41,7 +40,6 @@ class GuildInfo extends StatelessWidget {
         if (state is GuildError)
           return Text(
             'An unexpected error occurred',
-            style: TextStyle(color: Colors.grey),
           );
 
         return Text('...');

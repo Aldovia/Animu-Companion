@@ -19,13 +19,11 @@ class _RepSettingsBanOnLowRepCardState
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
                       'Ban on Low Rep',
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontSize: 18.0,
-                      ),
+                      style: Theme.of(context).textTheme.subtitle,
                     ),
                     Switch(
                       onChanged: (val) {

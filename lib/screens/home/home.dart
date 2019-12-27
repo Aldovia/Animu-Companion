@@ -15,11 +15,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Home',
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
-        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Container(

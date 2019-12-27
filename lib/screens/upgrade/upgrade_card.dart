@@ -1,4 +1,3 @@
-import 'package:animu/shared/constants.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,7 +76,6 @@ class UpgradeCard extends StatelessWidget {
                           ),
                           Text(
                             'You are using Animu ${toBeginningOfSentenceCase(state.guild.tier)}',
-                            style: TextStyle(color: Colors.grey[600]),
                           )
                         ],
                       ),
@@ -99,7 +97,7 @@ class UpgradeCard extends StatelessWidget {
                       ),
                       Text(
                         'Lite (\$5/month)',
-                        style: Constants().headingStyle,
+                        style: Theme.of(context).textTheme.title,
                       ),
                       SizedBox(
                         height: 10.0,
@@ -257,7 +255,7 @@ class UpgradeCard extends StatelessWidget {
                       ),
                       Text(
                         'Plus (\$10/month)',
-                        style: Constants().headingStyle,
+                        style: Theme.of(context).textTheme.title,
                       ),
                       SizedBox(
                         height: 10.0,
@@ -371,7 +369,7 @@ class UpgradeCard extends StatelessWidget {
                       ),
                       Text(
                         'Pro',
-                        style: Constants().headingStyle,
+                        style: Theme.of(context).textTheme.title,
                       ),
                       SizedBox(
                         height: 10.0,

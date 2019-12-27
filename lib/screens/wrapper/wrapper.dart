@@ -54,6 +54,7 @@ class _WrapperState extends State<Wrapper> {
         ),
       ),
       bottomNavigationBar: BubbleBottomBar(
+        backgroundColor: Theme.of(context).primaryColor,
         opacity: .2,
         currentIndex: currentIndex,
         onTap: (index) {
@@ -69,7 +70,6 @@ class _WrapperState extends State<Wrapper> {
               backgroundColor: Colors.blue,
               icon: Icon(
                 Icons.dashboard,
-                color: Colors.black,
               ),
               activeIcon: Icon(
                 Icons.dashboard,
@@ -80,7 +80,6 @@ class _WrapperState extends State<Wrapper> {
               backgroundColor: Colors.deepPurple,
               icon: Icon(
                 Icons.access_time,
-                color: Colors.black,
               ),
               activeIcon: Icon(
                 Icons.access_time,
@@ -91,7 +90,6 @@ class _WrapperState extends State<Wrapper> {
               backgroundColor: Colors.orange,
               icon: Icon(
                 Icons.show_chart,
-                color: Colors.black,
               ),
               activeIcon: Icon(
                 Icons.show_chart,
@@ -102,7 +100,6 @@ class _WrapperState extends State<Wrapper> {
               backgroundColor: Colors.orange[200],
               icon: Icon(
                 Icons.bookmark_border,
-                color: Colors.black,
               ),
               activeIcon: Icon(
                 Icons.bookmark_border,
@@ -113,7 +110,6 @@ class _WrapperState extends State<Wrapper> {
               backgroundColor: Colors.red,
               icon: Icon(
                 Icons.settings,
-                color: Colors.black,
               ),
               activeIcon: Icon(
                 Icons.settings,

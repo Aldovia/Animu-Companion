@@ -22,10 +22,7 @@ class _LevelSettingsExpBottleCardState
                   children: <Widget>[
                     Text(
                       'Exp Bottles',
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontSize: 18.0,
-                      ),
+                      style: Theme.of(context).textTheme.title,
                     ),
                     Switch(
                       onChanged: (val) {

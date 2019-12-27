@@ -15,11 +15,7 @@ class ToxicityFilters extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           'Toxicty Filters',
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
-        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Container(

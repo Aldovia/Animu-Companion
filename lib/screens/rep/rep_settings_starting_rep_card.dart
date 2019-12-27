@@ -30,10 +30,7 @@ class _RepSettingsStartingRepCardState
                 children: <Widget>[
                   Text(
                     'Starting Rep',
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontSize: 18.0,
-                    ),
+                    style: Theme.of(context).textTheme.subtitle,
                   ),
                   Slider(
                     onChanged: (val) {

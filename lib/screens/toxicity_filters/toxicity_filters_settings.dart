@@ -1,4 +1,3 @@
-import 'package:animu/shared/constants.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,14 +33,12 @@ class ToxicityFiltersSettings extends StatelessWidget {
               Icon(
                 FontAwesomeIcons.ribbon,
                 size: 50.0,
-                color: Colors.grey[700],
               ),
               SizedBox(
                 height: 30.0,
               ),
               Text(
                 "You've discovered a Plus Feature",
-                style: TextStyle(color: Colors.grey[800]),
               ),
               SizedBox(
                 height: 30.0,
@@ -71,7 +68,7 @@ class ToxicityFiltersSettings extends StatelessWidget {
           children: <Widget>[
             Text(
               'Filters',
-              style: Constants().headingStyle,
+              style: Theme.of(context).textTheme.title,
             ),
             SizedBox(
               height: 10.0,
@@ -242,7 +239,7 @@ class ToxicityFiltersSettings extends StatelessWidget {
             ),
             Text(
               'Settings',
-              style: Constants().headingStyle,
+              style: Theme.of(context).textTheme.title,
             ),
             SizedBox(
               height: 10.0,

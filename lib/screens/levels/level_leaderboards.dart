@@ -30,10 +30,7 @@ class LevelLeaderboards extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     '${(i + 1).toString()}. ',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.0,
-                                    ),
+                                    style: Theme.of(context).textTheme.subtitle,
                                   ),
                                   if (i < 9)
                                     SizedBox(
@@ -54,10 +51,7 @@ class LevelLeaderboards extends StatelessWidget {
                             ),
                             trailing: Text(
                               state.levelLeaderboardsUsers[i].level.toString(),
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.subtitle,
                             ),
                           ),
                           Divider(),

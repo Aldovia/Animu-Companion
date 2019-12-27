@@ -29,10 +29,7 @@ class _LevelSettingsExpTimeCardState extends State<LevelSettingsExpTimeCard> {
                 children: <Widget>[
                   Text(
                     'Exp Time',
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontSize: 18.0,
-                    ),
+                    style: Theme.of(context).textTheme.title,
                   ),
                   Slider(
                     onChanged: (val) {

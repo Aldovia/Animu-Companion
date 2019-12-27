@@ -1,5 +1,4 @@
 import 'package:animu_common/animu_common.dart';
-import 'package:animu/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -44,7 +43,7 @@ class Charts extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           'Growth over past ${state.growthRate.length} days',
-                          style: Constants().headingStyle,
+                          style: Theme.of(context).textTheme.title,
                         ),
                         SizedBox(
                           height: 20.0,
@@ -89,7 +88,6 @@ class Charts extends StatelessWidget {
                   if (state is ChartsError)
                     return Text(
                       'An unexpected error occurred',
-                      style: TextStyle(color: Colors.grey),
                     );
 
                   return Text('...');
@@ -131,7 +129,7 @@ class Charts extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           'Joined over past ${state.joinedRate.length} days',
-                          style: Constants().headingStyle,
+                          style: Theme.of(context).textTheme.title,
                         ),
                         SizedBox(
                           height: 20.0,
@@ -176,7 +174,6 @@ class Charts extends StatelessWidget {
                   if (state is ChartsError)
                     return Text(
                       'An unexpected error occurred',
-                      style: TextStyle(color: Colors.grey),
                     );
 
                   return Text('...');

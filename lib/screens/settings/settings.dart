@@ -21,11 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text(
           'Settings',
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
-        backgroundColor: Colors.white,
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -37,7 +33,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 ListTile(
                   leading: Icon(
                     Icons.chat_bubble_outline,
-                    color: Colors.black,
                   ),
                   title: Text('Toxicity Filters'),
                   onTap: () {

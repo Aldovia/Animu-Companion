@@ -29,10 +29,7 @@ class _LevelSettingsExpRateCardState extends State<LevelSettingsExpRateCard> {
                 children: <Widget>[
                   Text(
                     'Exp Rate',
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontSize: 18.0,
-                    ),
+                    style: Theme.of(context).textTheme.title,
                   ),
                   Slider(
                     onChanged: (val) {

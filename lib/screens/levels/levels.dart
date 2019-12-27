@@ -18,7 +18,6 @@ class Levels extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Container(
-        color: Colors.white,
         child: Center(
           child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -26,11 +25,7 @@ class Levels extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 'Levels',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
               ),
-              backgroundColor: Colors.white,
               actions: <Widget>[
                 BlocBuilder<LevelsBloc, LevelsState>(
                   builder: (context, state) => Switch(
@@ -45,13 +40,13 @@ class Levels extends StatelessWidget {
               bottom: TabBar(
                 tabs: <Widget>[
                   Tab(
-                    icon: Icon(Icons.show_chart, color: Colors.black),
+                    icon: Icon(Icons.show_chart),
                   ),
                   Tab(
-                    icon: Icon(Icons.settings, color: Colors.black),
+                    icon: Icon(Icons.settings),
                   ),
                   Tab(
-                    icon: Icon(Icons.star, color: Colors.black),
+                    icon: Icon(Icons.star),
                   ),
                 ],
               ),
@@ -75,7 +70,6 @@ class LevelsWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LevelsBloc, LevelsState>(
       builder: (context, state) {
-        print(state);
         return TabBarView(
           children: <Widget>[
             state is LevelsLoading
@@ -98,14 +92,12 @@ class LevelsWrapper extends StatelessWidget {
                                 Icon(
                                   FontAwesomeIcons.play,
                                   size: 50.0,
-                                  color: Colors.grey[700],
                                 ),
                                 SizedBox(
                                   height: 30.0,
                                 ),
                                 Text(
                                   "You've discovered a Lite Feature",
-                                  style: TextStyle(color: Colors.grey[800]),
                                 ),
                                 SizedBox(
                                   height: 30.0,
@@ -159,14 +151,12 @@ class LevelsWrapper extends StatelessWidget {
                                 Icon(
                                   FontAwesomeIcons.play,
                                   size: 50.0,
-                                  color: Colors.grey[700],
                                 ),
                                 SizedBox(
                                   height: 30.0,
                                 ),
                                 Text(
                                   "You've discovered a Lite Feature",
-                                  style: TextStyle(color: Colors.grey[800]),
                                 ),
                                 SizedBox(
                                   height: 30.0,
@@ -214,14 +204,12 @@ class LevelsWrapper extends StatelessWidget {
                                 Icon(
                                   FontAwesomeIcons.play,
                                   size: 50.0,
-                                  color: Colors.grey[700],
                                 ),
                                 SizedBox(
                                   height: 30.0,
                                 ),
                                 Text(
                                   "You've discovered a Lite Feature",
-                                  style: TextStyle(color: Colors.grey[800]),
                                 ),
                                 SizedBox(
                                   height: 30.0,

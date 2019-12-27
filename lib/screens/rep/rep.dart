@@ -22,18 +22,14 @@ class Rep extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 'Rep',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
               ),
-              backgroundColor: Colors.white,
               bottom: TabBar(
                 tabs: <Widget>[
                   Tab(
-                    icon: Icon(Icons.show_chart, color: Colors.black),
+                    icon: Icon(Icons.show_chart),
                   ),
                   Tab(
-                    icon: Icon(Icons.settings, color: Colors.black),
+                    icon: Icon(Icons.settings),
                   ),
                 ],
               ),

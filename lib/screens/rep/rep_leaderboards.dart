@@ -30,10 +30,7 @@ class RepLeaderboards extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     '${(i + 1).toString()}. ',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18.0,
-                                    ),
+                                    style: Theme.of(context).textTheme.subtitle,
                                   ),
                                   if (i < 9)
                                     SizedBox(
@@ -53,10 +50,7 @@ class RepLeaderboards extends StatelessWidget {
                             ),
                             trailing: Text(
                               state.repLeaderboardsUsers[i].rep.toString(),
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.subtitle,
                             ),
                           ),
                           Divider(),
