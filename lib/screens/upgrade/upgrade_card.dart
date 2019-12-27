@@ -281,21 +281,6 @@ class UpgradeCard extends StatelessWidget {
                           child: ListTile(
                             leading: CircleAvatar(
                               child: Icon(
-                                Icons.music_note,
-                                color: Colors.white,
-                              ),
-                              backgroundColor: Colors.red,
-                            ),
-                            title: Text('192 Kbps music'),
-                          ),
-                        ),
-                      ),
-                      Card(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              child: Icon(
                                 Icons.verified_user,
                                 color: Colors.white,
                               ),
