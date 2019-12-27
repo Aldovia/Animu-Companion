@@ -1,3 +1,4 @@
+import 'package:animu/screens/logs/logs.dart';
 import 'package:animu/screens/toxicity_filters/toxicity_filters.dart';
 import 'package:animu/screens/upgrade/upgrade.dart';
 import 'package:animu_common/animu_common.dart';
@@ -56,6 +57,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ToxicityFilters(
+                          animuRepository: widget.animuRepository,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.access_time,
+                    color: Colors.purple,
+                  ),
+                  title: Text('Logs'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Logs(
                           animuRepository: widget.animuRepository,
                         ),
                       ),

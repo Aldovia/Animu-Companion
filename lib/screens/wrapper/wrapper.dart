@@ -1,7 +1,7 @@
+import 'package:animu/screens/self_roles/self_roles.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:animu/screens/home/home.dart';
 import 'package:animu/screens/levels/levels.dart';
-import 'package:animu/screens/logs/logs.dart';
 import 'package:animu/screens/rep/rep.dart';
 import 'package:animu/screens/settings/settings.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
@@ -31,9 +31,6 @@ class _WrapperState extends State<Wrapper> {
             Home(
               animuRepository: widget.animuRepository,
             ),
-            Logs(
-              animuRepository: widget.animuRepository,
-            ),
             BlocProvider(
               create: (context) {
                 return LevelsBloc(animuRepository: widget.animuRepository)
@@ -44,6 +41,9 @@ class _WrapperState extends State<Wrapper> {
               ),
             ),
             Rep(
+              animuRepository: widget.animuRepository,
+            ),
+            SelfRoles(
               animuRepository: widget.animuRepository,
             ),
             SettingsPage(
@@ -80,19 +80,6 @@ class _WrapperState extends State<Wrapper> {
               ),
               title: Text("Home")),
           BubbleBottomBarItem(
-              backgroundColor: Colors.deepPurple,
-              icon: Icon(
-                Icons.access_time,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.black
-                    : Colors.white,
-              ),
-              activeIcon: Icon(
-                Icons.access_time,
-                color: Colors.deepPurple,
-              ),
-              title: Text("Logs")),
-          BubbleBottomBarItem(
               backgroundColor: Colors.orange,
               icon: Icon(
                 Icons.show_chart,
@@ -118,6 +105,19 @@ class _WrapperState extends State<Wrapper> {
                 color: Colors.orange[200],
               ),
               title: Text("Rep")),
+          BubbleBottomBarItem(
+              backgroundColor: Colors.green,
+              icon: Icon(
+                Icons.person_outline,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.black
+                    : Colors.white,
+              ),
+              activeIcon: Icon(
+                Icons.person_outline,
+                color: Colors.green,
+              ),
+              title: Text("Self Roles")),
           BubbleBottomBarItem(
               backgroundColor: Colors.red,
               icon: Icon(
