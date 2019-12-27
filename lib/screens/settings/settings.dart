@@ -32,6 +32,22 @@ class _SettingsPageState extends State<SettingsPage> {
               tiles: [
                 ListTile(
                   leading: Icon(
+                    Icons.brightness_3,
+                  ),
+                  title: Text('Dark mode'),
+                  trailing: Switch(
+                    value: Theme.of(context).brightness == Brightness.dark
+                        ? true
+                        : false,
+                    onChanged: (val) {
+                      BlocProvider.of<ThemeBloc>(context).add(
+                        ToggleTheme(val: val ? 'dark' : 'light'),
+                      );
+                    },
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
                     Icons.chat_bubble_outline,
                   ),
                   title: Text('Toxicity Filters'),

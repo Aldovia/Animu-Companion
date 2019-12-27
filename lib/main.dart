@@ -39,8 +39,13 @@ void main() async {
         return AuthenticationBloc(authRepository: authRepository)
           ..add(AppStarted());
       },
-      child: Animu(
-        authRepository: authRepository,
+      child: BlocProvider<ThemeBloc>(
+        create: (context) {
+          return ThemeBloc()..add(FetchTheme());
+        },
+        child: Animu(
+          authRepository: authRepository,
+        ),
       ),
     ),
   );
@@ -57,65 +62,69 @@ class Animu extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Animu',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.light,
-        primaryColor: Colors.white,
-        textTheme: TextTheme(
-          title: TextStyle(
-            color: Colors.grey[800],
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-          subtitle: TextStyle(
-            color: Colors.grey,
-            fontSize: 18.0,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      ),
-      darkTheme: ThemeData(
-        accentColor: Colors.blue,
-        primarySwatch: Colors.blue,
-        brightness: Brightness.dark,
-        textTheme: TextTheme(
-          title: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-          subtitle: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      ),
-      themeMode: ThemeMode.dark,
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          if (state is AuthenticationUninitialized) return Splash();
-
-          if (state is AuthenticationAuthenticated) {
-            return Wrapper(
-              animuRepository: AnimuRepository(
-                animuApiClient: AnimuApiClient(
-                  httpClient: http.Client(),
-                  token: state.token,
-                ),
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, themeState) {
+        return MaterialApp(
+          title: 'Animu',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            brightness: Brightness.light,
+            primaryColor: Colors.white,
+            textTheme: TextTheme(
+              title: TextStyle(
+                color: Colors.grey[800],
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
               ),
-            );
-          }
+              subtitle: TextStyle(
+                color: Colors.grey,
+                fontSize: 18.0,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+          darkTheme: ThemeData(
+            accentColor: Colors.blue,
+            primarySwatch: Colors.blue,
+            brightness: Brightness.dark,
+            textTheme: TextTheme(
+              title: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+              ),
+              subtitle: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+          themeMode: themeState is ThemeDark ? ThemeMode.dark : ThemeMode.light,
+          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state) {
+              if (state is AuthenticationUninitialized) return Splash();
 
-          if (state is AuthenticationUnauthenticated)
-            return Login(authRepository: authRepository);
+              if (state is AuthenticationAuthenticated) {
+                return Wrapper(
+                  animuRepository: AnimuRepository(
+                    animuApiClient: AnimuApiClient(
+                      httpClient: http.Client(),
+                      token: state.token,
+                    ),
+                  ),
+                );
+              }
 
-          if (state is AuthenticationLoading) return Loading();
+              if (state is AuthenticationUnauthenticated)
+                return Login(authRepository: authRepository);
 
-          return Text(
-              "Hmmm, seems like you've tried to do something you weren't supposed to to");
-        },
-      ),
+              if (state is AuthenticationLoading) return Loading();
+
+              return Text(
+                  "Hmmm, seems like you've tried to do something you weren't supposed to to");
+            },
+          ),
+        );
+      },
     );
   }
 }
