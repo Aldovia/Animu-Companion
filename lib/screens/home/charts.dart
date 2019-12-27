@@ -7,6 +7,28 @@ import 'package:charts_flutter/flutter.dart' as charts;
 class Charts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final axisNumeric = charts.NumericAxisSpec(
+      renderSpec: charts.GridlineRendererSpec(
+        labelStyle: charts.TextStyleSpec(
+          fontSize: 10,
+          color: Theme.of(context).brightness == Brightness.light
+              ? charts.MaterialPalette.black
+              : charts.MaterialPalette.white,
+        ),
+      ),
+    );
+
+    final axisDateTime = charts.DateTimeAxisSpec(
+      renderSpec: charts.GridlineRendererSpec(
+        labelStyle: charts.TextStyleSpec(
+          fontSize: 10,
+          color: Theme.of(context).brightness == Brightness.light
+              ? charts.MaterialPalette.black
+              : charts.MaterialPalette.white,
+        ),
+      ),
+    );
+
     return Swiper(
       itemBuilder: (BuildContext context, int index) {
         List<Widget> chartsList = [
@@ -52,6 +74,8 @@ class Charts extends StatelessWidget {
                           height: 200.0,
                           child: charts.TimeSeriesChart(
                             _createGrowthData(),
+                            primaryMeasureAxis: axisNumeric,
+                            domainAxis: axisDateTime,
                             animate: true,
                             behaviors: [
                               charts.SeriesLegend(
@@ -138,6 +162,8 @@ class Charts extends StatelessWidget {
                           height: 200.0,
                           child: charts.TimeSeriesChart(
                             _createJoinedData(),
+                            primaryMeasureAxis: axisNumeric,
+                            domainAxis: axisDateTime,
                             animate: true,
                             behaviors: [
                               charts.SeriesLegend(
