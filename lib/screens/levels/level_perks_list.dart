@@ -28,25 +28,49 @@ class LevelPerksList extends StatelessWidget {
                 if (state.levelPerks[i].rep != null)
                   subtitle += 'Rep: ${state.levelPerks[i].rep}';
 
-                return Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.blue,
-                        child: Text(
-                          (i + 1).toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
+                return Dismissible(
+                  key: Key(state.levelPerks[i].level.toString()),
+                  background: Container(
+                    color: Colors.red,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Icon(Icons.delete),
+                          Icon(Icons.delete),
+                        ],
+                      ),
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    BlocProvider.of<LevelPerksBloc>(context).add(
+                      DeleteLevelPerk(level: state.levelPerks[i].level),
+                    );
+
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'Deleted Level ${state.levelPerks[i].level.toString()} Perks'),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      child: Text(
+                        (i + 1).toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
                         ),
                       ),
-                      title:
-                          Text('Level ${state.levelPerks[i].level.toString()}'),
-                      subtitle: Text(subtitle),
                     ),
-                    Divider(),
-                  ],
+                    title:
+                        Text('Level ${state.levelPerks[i].level.toString()}'),
+                    subtitle: Text(subtitle),
+                  ),
                 );
               },
             ),

@@ -17,26 +17,24 @@ class SelfRolesList extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Expanded(
-                  child: ListView.builder(
+                  child: ListView.separated(
                     itemCount: state.selfRoles.length,
+                    separatorBuilder: (context, index) {
+                      return Divider();
+                    },
                     itemBuilder: (BuildContext context, int i) {
-                      return Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              child: Text(
-                                (i + 1).toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
-                                ),
-                              ),
+                      return ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.blue,
+                          child: Text(
+                            (i + 1).toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
                             ),
-                            title: Text(state.selfRoles[i].role.name),
                           ),
-                          Divider(),
-                        ],
+                        ),
+                        title: Text(state.selfRoles[i].role.name),
                       );
                     },
                   ),
