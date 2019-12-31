@@ -17,24 +17,50 @@ class SelfRolesList extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Expanded(
-                  child: ListView.separated(
+                  child: ListView.builder(
                     itemCount: state.selfRoles.length,
-                    separatorBuilder: (context, index) {
-                      return Divider();
-                    },
                     itemBuilder: (BuildContext context, int i) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.blue,
-                          child: Text(
-                            (i + 1).toString(),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
+                      return Dismissible(
+                        key: Key(state.selfRoles[i].role.id),
+                        background: Container(
+                          color: Colors.red,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Icon(Icons.delete),
+                                Icon(Icons.delete),
+                              ],
                             ),
                           ),
                         ),
-                        title: Text(state.selfRoles[i].role.name),
+                        onDismissed: (direction) {
+                          BlocProvider.of<SelfRolesListBloc>(context).add(
+                            DeleteSelfRole(role: state.selfRoles[i].role.name),
+                          );
+
+                          Scaffold.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Deleted Self Role ${state.selfRoles[i].role.name.toString()}'),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue,
+                            child: Text(
+                              (i + 1).toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          ),
+                          title: Text(state.selfRoles[i].role.name),
+                        ),
                       );
                     },
                   ),
