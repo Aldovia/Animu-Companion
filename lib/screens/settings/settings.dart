@@ -1,3 +1,4 @@
+import 'package:animu/screens/help/help.dart';
 import 'package:animu/screens/logs/logs.dart';
 import 'package:animu/screens/toxicity_filters/toxicity_filters.dart';
 import 'package:animu/screens/upgrade/upgrade.dart';
@@ -76,6 +77,21 @@ class _SettingsPageState extends State<SettingsPage> {
                         builder: (context) => Logs(
                           animuRepository: widget.animuRepository,
                         ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.help_outline,
+                    color: Colors.blue,
+                  ),
+                  title: Text('Help'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Help(),
                       ),
                     );
                   },
