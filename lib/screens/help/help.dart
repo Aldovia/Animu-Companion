@@ -1,4 +1,5 @@
 import 'package:animu/screens/help/levels_help.dart';
+import 'package:animu/screens/help/reputation_help.dart';
 import 'package:animu/screens/help/self_roles_help.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,7 @@ class Help extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SelfRolesHelp(),
+                        builder: (context) => ReputationHelp(),
                       ),
                     );
                   },
