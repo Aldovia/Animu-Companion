@@ -296,6 +296,21 @@ class UpgradeCard extends StatelessWidget {
                           child: ListTile(
                             leading: CircleAvatar(
                               child: Icon(
+                                Icons.music_note,
+                                color: Colors.white,
+                              ),
+                              backgroundColor: Colors.yellow,
+                            ),
+                            title: Text('24/7 Music'),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              child: Icon(
                                 Icons.chat_bubble_outline,
                                 color: Colors.white,
                               ),
