@@ -48,7 +48,9 @@ class _LogsListState extends State<LogsList> {
                               child: CircleAvatar(
                                 backgroundColor: Colors.blue,
                                 child: Icon(
-                                  Icons.message,
+                                  state.logs[i].type == 'messageDelete'
+                                      ? Icons.message
+                                      : Icons.chat_bubble_outline,
                                   color: Colors.white,
                                   size: 10,
                                 ),
