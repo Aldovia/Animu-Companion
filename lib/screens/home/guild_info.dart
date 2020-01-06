@@ -15,7 +15,7 @@ class GuildInfo extends StatelessWidget {
         if (state is GuildLoaded)
           return Card(
             child: Padding(
-              padding: EdgeInsets.all(32.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[

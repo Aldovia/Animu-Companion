@@ -19,7 +19,6 @@ class Home extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Column(
             children: <Widget>[
               // Guild Info
@@ -38,7 +37,7 @@ class Home extends StatelessWidget {
                     ..add(FetchCharts(growthCycle: 7, joinedCycle: 7));
                 },
                 child: Container(
-                  constraints: BoxConstraints(minWidth: 350, minHeight: 300),
+                  constraints: BoxConstraints(minWidth: 350, minHeight: 350),
                   child: Charts(),
                 ),
               )
