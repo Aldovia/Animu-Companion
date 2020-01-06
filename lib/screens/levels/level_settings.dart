@@ -19,18 +19,14 @@ class LevelSettings extends StatelessWidget {
 
         if (state is LevelSettingsLoaded)
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             child: ListView(
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: [
-                  LevelSettingsBlacklistedRolesCard(),
-                  LevelSettingsBlacklistedChannelsCard(),
-                  LevelSettingsExpBottleCard(),
-                  LevelSettingsExpRateCard(),
-                  LevelSettingsExpTimeCard(),
-                ],
-              ).toList(),
+              children: [
+                LevelSettingsBlacklistedRolesCard(),
+                LevelSettingsBlacklistedChannelsCard(),
+                LevelSettingsExpBottleCard(),
+                LevelSettingsExpRateCard(),
+                LevelSettingsExpTimeCard(),
+              ],
             ),
           );
 

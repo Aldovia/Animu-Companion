@@ -17,7 +17,8 @@ class _LevelSettingsExpBottleCardState
         if (state is LevelSettingsLoaded) {
           return Card(
             child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                 child: Row(
                   children: <Widget>[
                     Text(

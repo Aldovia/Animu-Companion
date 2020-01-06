@@ -14,7 +14,6 @@ class LevelPerksList extends StatelessWidget {
 
         if (state is LevelPerksLoaded)
           return Container(
-            padding: EdgeInsets.all(10.0),
             child: ListView.builder(
               itemCount: state.levelPerks.length,
               itemBuilder: (BuildContext context, int i) {
