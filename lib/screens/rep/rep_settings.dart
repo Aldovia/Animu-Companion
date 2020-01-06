@@ -17,16 +17,12 @@ class RepSettings extends StatelessWidget {
 
         if (state is RepSettingsLoaded)
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             child: ListView(
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: [
-                  RepSettingsBlacklistedRolesCard(),
-                  RepSettingsBanOnLowRepCard(),
-                  RepSettingsStartingRepCard(),
-                ],
-              ).toList(),
+              children: [
+                RepSettingsBlacklistedRolesCard(),
+                RepSettingsBanOnLowRepCard(),
+                RepSettingsStartingRepCard(),
+              ],
             ),
           );
 

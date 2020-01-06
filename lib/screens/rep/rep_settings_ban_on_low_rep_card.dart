@@ -17,7 +17,8 @@ class _RepSettingsBanOnLowRepCardState
         if (state is RepSettingsLoaded) {
           return Card(
             child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

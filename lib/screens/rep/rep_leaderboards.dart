@@ -14,52 +14,41 @@ class RepLeaderboards extends StatelessWidget {
 
         if (state is RepLeaderboardsLoaded)
           return Container(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: state.repLeaderboardsUsers.length,
-                    itemBuilder: (BuildContext context, int i) {
-                      return Column(
-                        children: <Widget>[
-                          ListTile(
-                            leading: SizedBox(
-                              width: 70.0,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    '${(i + 1).toString()}. ',
-                                    style: Theme.of(context).textTheme.subtitle,
-                                  ),
-                                  if (i < 9)
-                                    SizedBox(
-                                      width: 10.0,
-                                    ),
-                                  CircleAvatar(
-                                    backgroundImage: NetworkImage(state
-                                        .repLeaderboardsUsers[i].avatarUrl),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            title: Text(
-                              state.repLeaderboardsUsers[i].username.length > 20
-                                  ? '${state.repLeaderboardsUsers[i].username.substring(0, 20)}...'
-                                  : state.repLeaderboardsUsers[i].username,
-                            ),
-                            trailing: Text(
-                              state.repLeaderboardsUsers[i].rep.toString(),
-                              style: Theme.of(context).textTheme.subtitle,
-                            ),
+            child: ListView.builder(
+              itemCount: state.repLeaderboardsUsers.length,
+              itemBuilder: (BuildContext context, int i) {
+                return ListTile(
+                  dense: true,
+                  leading: SizedBox(
+                    width: 70.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '${(i + 1).toString()}. ',
+                          style: Theme.of(context).textTheme.subtitle,
+                        ),
+                        if (i < 9)
+                          SizedBox(
+                            width: 10.0,
                           ),
-                          Divider(),
-                        ],
-                      );
-                    },
+                        CircleAvatar(
+                          radius: 16,
+                          backgroundImage: NetworkImage(
+                              state.repLeaderboardsUsers[i].avatarUrl),
+                        ),
+                      ],
+                    ),
                   ),
-                )
-              ],
+                  title: Text(
+                    state.repLeaderboardsUsers[i].username,
+                  ),
+                  trailing: Text(
+                    state.repLeaderboardsUsers[i].rep.toString(),
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
+                );
+              },
             ),
           );
 
