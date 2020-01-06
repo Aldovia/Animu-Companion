@@ -66,12 +66,15 @@ class ToxicityFiltersSettings extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Filters',
-              style: Theme.of(context).textTheme.title,
-            ),
-            SizedBox(
-              height: 10.0,
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 8.0,
+                left: 8.0,
+              ),
+              child: Text(
+                'Filters',
+                style: Theme.of(context).textTheme.title,
+              ),
             ),
             Card(
               child: Padding(
@@ -234,19 +237,19 @@ class ToxicityFiltersSettings extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              'Settings',
-              style: Theme.of(context).textTheme.title,
-            ),
-            SizedBox(
-              height: 10.0,
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 8.0,
+                left: 8.0,
+              ),
+              child: Text(
+                'Settings',
+                style: Theme.of(context).textTheme.title,
+              ),
             ),
             Card(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.only(left: 8.0),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -312,7 +315,7 @@ class ToxicityFiltersSettings extends StatelessWidget {
                       children: <Widget>[
                         Text('Delete Toxic Messages'),
                         Switch(
-                          value: state.settings.deleteToxicMessages,
+                          value: state.settings.deleteToxicMessages ?? false,
                           onChanged: (val) {
                             BlocProvider.of<ToxicityFiltersSettingsBloc>(
                                     context)
