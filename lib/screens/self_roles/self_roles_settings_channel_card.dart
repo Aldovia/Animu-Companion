@@ -11,7 +11,7 @@ class SelfRolesSettingsChannelCard extends StatelessWidget {
         if (state is SelfRolesSettingsLoaded)
           return Card(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: Padding(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),

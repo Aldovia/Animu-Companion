@@ -16,15 +16,11 @@ class SelfRolesSettings extends StatelessWidget {
 
         if (state is SelfRolesSettingsLoaded)
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             child: ListView(
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: [
-                  SelfRolesSettingsChannelCard(),
-                  SelfRolesSettingsMessageCard(),
-                ],
-              ).toList(),
+              children: [
+                SelfRolesSettingsChannelCard(),
+                SelfRolesSettingsMessageCard(),
+              ],
             ),
           );
 
