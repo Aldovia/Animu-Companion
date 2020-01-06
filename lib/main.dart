@@ -84,8 +84,9 @@ class Animu extends StatelessWidget {
             ),
           ),
           darkTheme: ThemeData(
-            accentColor: Colors.blue,
             primarySwatch: Colors.blue,
+            accentColor: Colors.blue,
+            toggleableActiveColor: Colors.blue,
             brightness: Brightness.dark,
             textTheme: TextTheme(
               title: TextStyle(

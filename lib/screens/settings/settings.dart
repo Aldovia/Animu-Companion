@@ -26,7 +26,6 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: Container(
           child: ListView(
             children: ListTile.divideTiles(

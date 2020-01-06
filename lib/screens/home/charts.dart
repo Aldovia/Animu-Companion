@@ -66,8 +66,11 @@ class Charts extends StatelessWidget {
           child: BlocBuilder<ChartsBloc, ChartsState>(
             builder: (context, state) {
               if (state is ChartsLoading)
-                return Center(
-                  child: CircularProgressIndicator(),
+                return SizedBox(
+                  height: 250,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
 
               if (state is ChartsLoaded) {
@@ -164,8 +167,11 @@ class Charts extends StatelessWidget {
           child: BlocBuilder<ChartsBloc, ChartsState>(
             builder: (context, state) {
               if (state is ChartsLoading)
-                return Center(
-                  child: CircularProgressIndicator(),
+                return SizedBox(
+                  height: 250,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
 
               if (state is ChartsLoaded) {
