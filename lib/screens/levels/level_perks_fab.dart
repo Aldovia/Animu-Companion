@@ -35,7 +35,7 @@ class _LevelPerksFABState extends State<LevelPerksFAB> {
                   child: Icon(Icons.bookmark),
                   backgroundColor: Colors.red,
                   label: 'Rep',
-                  labelStyle: TextStyle(fontSize: 18.0),
+                  labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
                   onTap: () {
                     PersistentBottomSheetController bottomSheetController =
                         Scaffold.of(context).showBottomSheet(
@@ -49,7 +49,7 @@ class _LevelPerksFABState extends State<LevelPerksFAB> {
                 child: Icon(Icons.card_membership),
                 backgroundColor: Colors.blue,
                 label: 'Badge',
-                labelStyle: TextStyle(fontSize: 18.0),
+                labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
                 onTap: () {
                   PersistentBottomSheetController bottomSheetController =
                       Scaffold.of(context).showBottomSheet(
@@ -65,7 +65,7 @@ class _LevelPerksFABState extends State<LevelPerksFAB> {
                 child: Icon(Icons.perm_identity),
                 backgroundColor: Colors.green,
                 label: 'Role',
-                labelStyle: TextStyle(fontSize: 18.0),
+                labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
                 onTap: () {
                   PersistentBottomSheetController bottomSheetController =
                       Scaffold.of(context).showBottomSheet(
