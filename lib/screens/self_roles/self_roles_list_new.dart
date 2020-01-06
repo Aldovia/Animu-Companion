@@ -51,7 +51,9 @@ class _SelfRolesNewState extends State<SelfRolesNew> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey,
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey
+                        : Colors.grey[800],
                     blurRadius: 5,
                   ),
                 ],
