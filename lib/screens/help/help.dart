@@ -11,7 +11,6 @@ class Help extends StatelessWidget {
         title: Text('Help'),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: Column(
           children: <Widget>[
             Card(
