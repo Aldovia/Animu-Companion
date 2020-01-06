@@ -16,7 +16,6 @@ class Upgrade extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: BlocProvider(
           create: (context) =>
               GuildBloc(animuRepository: animuRepository)..add(FetchGuild()),
