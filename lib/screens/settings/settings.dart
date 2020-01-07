@@ -2,6 +2,7 @@ import 'package:animu/screens/help/help.dart';
 import 'package:animu/screens/logs/logs.dart';
 import 'package:animu/screens/toxicity_filters/toxicity_filters.dart';
 import 'package:animu/screens/upgrade/upgrade.dart';
+import 'package:animu/screens/welcome_message/welcome_message.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,6 +75,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Logs(
+                          animuRepository: widget.animuRepository,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.person_add,
+                    color: Colors.yellow,
+                  ),
+                  title: Text('Welcome Message'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WelcomeMessage(
                           animuRepository: widget.animuRepository,
                         ),
                       ),
