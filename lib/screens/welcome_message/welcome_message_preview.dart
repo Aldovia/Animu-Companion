@@ -35,20 +35,22 @@ class WelcomeMessagePreview extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Weebtard, Welcome to Weebs Den',
+                          '${state.guild.owner.username}, Welcome to ${state.guild.name}',
                           style: Theme.of(context).textTheme.title,
                         ),
                         SizedBox(
                           height: 20.0,
                         ),
-                        Text(state.settings.welcomeMessage),
+                        Text(state.settings.welcomeMessage ?? ''),
                         SizedBox(
                           height: 20.0,
                         ),
                         ClipRRect(
                           borderRadius: new BorderRadius.circular(8.0),
                           child: Image(
-                            image: NetworkImage(state.settings.welcomeImageURL),
+                            image: NetworkImage(state
+                                    .settings.welcomeImageURL ??
+                                'https://via.placeholder.com/1920x1080?text=No%20image%20added%20yet'),
                           ),
                         ),
                       ],
