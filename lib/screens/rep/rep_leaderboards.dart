@@ -15,7 +15,7 @@ class RepLeaderboards extends StatelessWidget {
         if (state is RepLeaderboardsLoaded)
           return Container(
             child: ListView.builder(
-              itemCount: state.repLeaderboardsUsers.length,
+              itemCount: state.leaderboardMembers.length,
               itemBuilder: (BuildContext context, int i) {
                 return ListTile(
                   dense: true,
@@ -35,16 +35,16 @@ class RepLeaderboards extends StatelessWidget {
                         CircleAvatar(
                           radius: 16,
                           backgroundImage: NetworkImage(
-                              state.repLeaderboardsUsers[i].avatarUrl),
+                              state.leaderboardMembers[i].avatarURL),
                         ),
                       ],
                     ),
                   ),
                   title: Text(
-                    state.repLeaderboardsUsers[i].username,
+                    state.leaderboardMembers[i].username,
                   ),
                   trailing: Text(
-                    state.repLeaderboardsUsers[i].rep.toString(),
+                    state.leaderboardMembers[i].reputation.toString(),
                     style: Theme.of(context).textTheme.subtitle,
                   ),
                 );
