@@ -14,7 +14,7 @@ class LevelLeaderboards extends StatelessWidget {
 
         if (state is LevelLeaderboardsLoaded)
           return ListView.builder(
-            itemCount: state.levelLeaderboardsUsers.length,
+            itemCount: state.leaderboardMembers.length,
             itemBuilder: (BuildContext context, int i) {
               return ListTile(
                 dense: true,
@@ -33,20 +33,23 @@ class LevelLeaderboards extends StatelessWidget {
                         ),
                       CircleAvatar(
                         radius: 16.0,
-                        backgroundImage: NetworkImage(
-                            state.levelLeaderboardsUsers[i].avatarUrl),
+                        backgroundImage:
+                            NetworkImage(state.leaderboardMembers[i].avatarURL),
                       ),
                     ],
                   ),
                 ),
                 title: Text(
-                  state.levelLeaderboardsUsers[i].username
+                  state.leaderboardMembers[i].username
                       .replaceAll("[^\\x00-\\x7F]", ""),
                 ),
                 trailing: Text(
-                  state.levelLeaderboardsUsers[i].level.toString(),
+                  state.leaderboardMembers[i].level.toString(),
                   style: Theme.of(context).textTheme.subtitle,
                 ),
+                // onTap: () {
+                //   // Navigator.push(context, MaterialPageRoute(builder: (context) => MemberScreen(memberID: state.leaderboardMembers[i].,)));
+                // },
               );
             },
           );
