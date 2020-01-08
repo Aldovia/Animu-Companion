@@ -1,3 +1,4 @@
+import 'package:animu/screens/member_screen/kick_ban_member.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -123,6 +124,11 @@ class MemberScreen extends StatelessWidget {
                         leading: Icon(FontAwesomeIcons.ban, color: Colors.red),
                         title: Text('Kick/Ban Member'),
                         trailing: Icon(Icons.arrow_forward_ios),
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              KickBanMemberDialog(),
+                        ),
                       ),
                     ],
                   ),
