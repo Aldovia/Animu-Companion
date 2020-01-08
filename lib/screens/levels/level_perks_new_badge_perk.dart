@@ -49,9 +49,9 @@ class _LevelPerksNewBadgePerkState extends State<LevelPerksNewBadgePerk> {
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).brightness == Brightness.light
-                  ? Colors.grey
+                  ? Colors.grey[200]
                   : Colors.grey[800],
-              blurRadius: 5,
+              blurRadius: 10,
             ),
           ],
         ),
