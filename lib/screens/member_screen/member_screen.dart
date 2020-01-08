@@ -20,10 +20,13 @@ class MemberScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Column(
               children: <Widget>[
-                CircleAvatar(
-                  radius: 60.0,
-                  backgroundColor: Theme.of(context).canvasColor,
-                  backgroundImage: NetworkImage(member.avatarURL),
+                Hero(
+                  tag: 'avatar_${member.id}',
+                  child: CircleAvatar(
+                    radius: 60.0,
+                    backgroundColor: Theme.of(context).canvasColor,
+                    backgroundImage: NetworkImage(member.avatarURL),
+                  ),
                 ),
                 SizedBox(
                   height: 20,

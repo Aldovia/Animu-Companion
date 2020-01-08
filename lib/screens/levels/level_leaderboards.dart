@@ -32,10 +32,13 @@ class LevelLeaderboards extends StatelessWidget {
                         SizedBox(
                           width: 10.0,
                         ),
-                      CircleAvatar(
-                        radius: 16.0,
-                        backgroundImage:
-                            NetworkImage(state.leaderboardMembers[i].avatarURL),
+                      Hero(
+                        tag: 'avatar_${state.leaderboardMembers[i].id}',
+                        child: CircleAvatar(
+                          radius: 16.0,
+                          backgroundImage: NetworkImage(
+                              state.leaderboardMembers[i].avatarURL),
+                        ),
                       ),
                     ],
                   ),
