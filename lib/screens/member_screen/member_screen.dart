@@ -1,5 +1,6 @@
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MemberScreen extends StatelessWidget {
   final Member member;
@@ -81,7 +82,7 @@ class MemberScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 300.0,
+              height: 200.0,
               color: Colors.transparent,
               child: Container(
                 decoration: BoxDecoration(
@@ -100,7 +101,26 @@ class MemberScreen extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                  child: Text('Stuff here'),
+                  child: ListView(
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.person_outline, color: Colors.blue),
+                        title: Text('View More Info'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                      ListTile(
+                        leading:
+                            Icon(Icons.card_giftcard, color: Colors.yellow),
+                        title: Text('Manage Badges'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                      ListTile(
+                        leading: Icon(FontAwesomeIcons.ban, color: Colors.red),
+                        title: Text('Kick/Ban Member'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
