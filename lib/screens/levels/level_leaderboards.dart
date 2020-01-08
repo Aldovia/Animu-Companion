@@ -1,3 +1,4 @@
+import 'package:animu/screens/member_screen/member_screen.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,9 +48,16 @@ class LevelLeaderboards extends StatelessWidget {
                   state.leaderboardMembers[i].level.toString(),
                   style: Theme.of(context).textTheme.subtitle,
                 ),
-                // onTap: () {
-                //   // Navigator.push(context, MaterialPageRoute(builder: (context) => MemberScreen(memberID: state.leaderboardMembers[i].,)));
-                // },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MemberScreen(
+                        member: state.leaderboardMembers[i],
+                      ),
+                    ),
+                  );
+                },
               );
             },
           );

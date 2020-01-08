@@ -71,17 +71,21 @@ class Animu extends StatelessWidget {
             brightness: Brightness.light,
             primaryColor: Colors.white,
             textTheme: TextTheme(
-              title: TextStyle(
-                color: Colors.grey[800],
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0,
-              ),
-              subtitle: TextStyle(
-                color: Colors.grey,
-                fontSize: 18.0,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
+                title: TextStyle(
+                  color: Colors.grey[800],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+                subtitle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
+                ),
+                display1: TextStyle(
+                  color: Colors.grey[900],
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                )),
           ),
           darkTheme: ThemeData(
             primarySwatch: Colors.blue,
@@ -89,15 +93,18 @@ class Animu extends StatelessWidget {
             toggleableActiveColor: Colors.blue,
             brightness: Brightness.dark,
             textTheme: TextTheme(
-              title: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0,
-              ),
-              subtitle: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
+                title: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+                subtitle: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
+                ),
+                display1: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                )),
           ),
           themeMode: themeState is ThemeDark ? ThemeMode.dark : ThemeMode.light,
           home: BlocBuilder<AuthenticationBloc, AuthenticationState>(

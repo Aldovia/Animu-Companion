@@ -27,6 +27,7 @@ dependencies:
   bloc: ^2.0.0
   flutter_bloc: ^2.0.0
   qr_code_scanner: ^0.0.12
+  circular_profile_avatar: ^1.0.6
   animu_common:
     path: ../animu_common
 
