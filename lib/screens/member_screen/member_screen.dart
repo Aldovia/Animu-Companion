@@ -9,7 +9,6 @@ class MemberScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(member.profileWallpaperURL);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -23,6 +22,7 @@ class MemberScreen extends StatelessWidget {
               children: <Widget>[
                 CircleAvatar(
                   radius: 60.0,
+                  backgroundColor: Theme.of(context).canvasColor,
                   backgroundImage: NetworkImage(member.avatarURL),
                 ),
                 SizedBox(
@@ -37,7 +37,9 @@ class MemberScreen extends StatelessWidget {
                 ),
                 Chip(
                   label: Text(
-                    member.activeBadge ?? 'No active badge',
+                    member.activeBadge != null && member.activeBadge != ''
+                        ? member.activeBadge
+                        : 'No active badge',
                   ),
                 ),
                 SizedBox(
@@ -96,8 +98,8 @@ class MemberScreen extends StatelessWidget {
                   ],
                   color: Theme.of(context).primaryColor,
                   borderRadius: new BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                    topRight: const Radius.circular(40.0),
+                    topLeft: const Radius.circular(30.0),
+                    topRight: const Radius.circular(30.0),
                   ),
                 ),
                 child: Center(
