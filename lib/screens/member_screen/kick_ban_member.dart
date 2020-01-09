@@ -53,7 +53,9 @@ class _KickBanMemberDialogState extends State<KickBanMemberDialog> {
         RaisedButton(
           color: Colors.red,
           child: Text(ban ? 'Ban' : 'Kick'),
-          onPressed: () {},
+          onPressed: () {
+            // Use Bloc to kick/ban member
+          },
         ),
       ],
     );

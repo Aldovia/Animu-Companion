@@ -1,4 +1,5 @@
 import 'package:animu/screens/member_screen/kick_ban_member.dart';
+import 'package:animu/screens/member_screen/give_badge.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -117,8 +118,14 @@ class MemberScreen extends StatelessWidget {
                       ListTile(
                         leading:
                             Icon(Icons.card_giftcard, color: Colors.yellow),
-                        title: Text('Manage Badges'),
+                        title: Text('Give Badge'),
                         trailing: Icon(Icons.arrow_forward_ios),
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) => GiveBadgeDialog(
+                            member: member,
+                          ),
+                        ),
                       ),
                       ListTile(
                         leading: Icon(FontAwesomeIcons.ban, color: Colors.red),
