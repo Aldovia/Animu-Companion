@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LevelLeaderboards extends StatelessWidget {
+  final AnimuRepository animuRepository;
+
+  LevelLeaderboards({@required this.animuRepository});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LevelLeaderboardsBloc, LevelLeaderboardsState>(
@@ -56,6 +60,7 @@ class LevelLeaderboards extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => MemberScreen(
+                        animuRepository: animuRepository,
                         member: state.leaderboardMembers[i],
                       ),
                     ),

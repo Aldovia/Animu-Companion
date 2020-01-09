@@ -1,10 +1,9 @@
-import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 
 class GiveBadgeDialog extends StatefulWidget {
-  final Member member;
+  final Function giveBadge;
 
-  GiveBadgeDialog({Key key, this.member}) : super(key: key);
+  GiveBadgeDialog({Key key, this.giveBadge}) : super(key: key);
 
   @override
   _GiveBadgeDialogState createState() => _GiveBadgeDialogState();
@@ -24,6 +23,7 @@ class _GiveBadgeDialogState extends State<GiveBadgeDialog> {
     return AlertDialog(
       title: Text('Give Badge'),
       content: TextField(
+        maxLength: 30,
         controller: _controller,
         decoration: InputDecoration(labelText: 'Badge Name'),
       ),
@@ -36,8 +36,8 @@ class _GiveBadgeDialogState extends State<GiveBadgeDialog> {
           color: Colors.blue,
           child: Text('Give'),
           onPressed: () {
-            // Use bloc to add badge
-            print(_controller.text);
+            widget.giveBadge(_controller.text);
+            Navigator.of(context).pop();
           },
         ),
       ],

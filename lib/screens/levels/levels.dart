@@ -83,7 +83,9 @@ class LevelsWrapper extends StatelessWidget {
                               animuRepository: animuRepository)
                             ..add(FetchLevelLeaderboards());
                         },
-                        child: LevelLeaderboards())
+                        child: LevelLeaderboards(
+                          animuRepository: animuRepository,
+                        ))
                     : state is LevelsUnavailable
                         ? Container(
                             child: Column(

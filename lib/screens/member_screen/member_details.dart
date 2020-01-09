@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MemberDetails extends StatelessWidget {
   final Member member;
 
-  MemberDetails({Key key, this.member}) : super(key: key);
+  MemberDetails({this.member});
 
   @override
   Widget build(BuildContext context) {

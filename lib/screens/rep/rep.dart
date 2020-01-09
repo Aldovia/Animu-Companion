@@ -40,7 +40,9 @@ class Rep extends StatelessWidget {
                   create: (context) =>
                       RepLeaderboardsBloc(animuRepository: animuRepository)
                         ..add(FetchRepLeaderboards()),
-                  child: RepLeaderboards(),
+                  child: RepLeaderboards(
+                    animuRepository: animuRepository,
+                  ),
                 ),
                 BlocProvider(
                   create: (context) =>
