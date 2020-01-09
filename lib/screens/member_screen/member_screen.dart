@@ -1,5 +1,6 @@
 import 'package:animu/screens/member_screen/kick_ban_member.dart';
 import 'package:animu/screens/member_screen/give_badge.dart';
+import 'package:animu/screens/member_screen/member_details.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -114,6 +115,16 @@ class MemberScreen extends StatelessWidget {
                         leading: Icon(Icons.person_outline, color: Colors.blue),
                         title: Text('View More Info'),
                         trailing: Icon(Icons.arrow_forward_ios),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MemberDetails(
+                                member: member,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                       ListTile(
                         leading:
