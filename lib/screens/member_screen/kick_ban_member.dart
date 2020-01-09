@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
 
 class KickBanMemberDialog extends StatefulWidget {
+  final Function kickFunction;
+  final Function banFunction;
+
+  KickBanMemberDialog({this.kickFunction, this.banFunction});
+
   @override
   _KickBanMemberDialogState createState() => _KickBanMemberDialogState();
 }
 
 class _KickBanMemberDialogState extends State<KickBanMemberDialog> {
   bool ban = false;
+  bool showErr = false;
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Kick/Ban Member'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
+      content: ListView(
+        shrinkWrap: true,
         children: <Widget>[
+          if (showErr)
+            Text(
+              "Reason can't be empty",
+              style: TextStyle(color: Colors.red, fontSize: 12.0),
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -42,6 +54,12 @@ class _KickBanMemberDialogState extends State<KickBanMemberDialog> {
           ),
           TextFormField(
             decoration: InputDecoration(labelText: 'Reason'),
+            controller: _controller,
+            maxLength: 100,
+            validator: (val) {
+              if (val.isEmpty) return "Reason Can't be empty";
+              return null;
+            },
           )
         ],
       ),
@@ -54,7 +72,18 @@ class _KickBanMemberDialogState extends State<KickBanMemberDialog> {
           color: Colors.red,
           child: Text(ban ? 'Ban' : 'Kick'),
           onPressed: () {
-            // Use Bloc to kick/ban member
+            if (_controller.text.isEmpty)
+              setState(() {
+                showErr = true;
+              });
+            else {
+              if (!ban)
+                widget.kickFunction(_controller.text);
+              else
+                widget.banFunction(_controller.text);
+
+              Navigator.of(context).pop();
+            }
           },
         ),
       ],

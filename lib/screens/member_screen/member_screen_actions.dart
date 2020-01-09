@@ -22,6 +22,28 @@ class MemberScreenActions extends StatelessWidget {
       );
     }
 
+    void _kickMember(String reason) {
+      print(reason);
+      BlocProvider.of<MemberBloc>(context).add(
+        KickMember(
+          memberID: member.id,
+          reason: reason,
+        ),
+      );
+      Navigator.of(context).pop();
+    }
+
+    void _banMember(String reason) {
+      print(reason);
+      BlocProvider.of<MemberBloc>(context).add(
+        BanMember(
+          memberID: member.id,
+          reason: reason,
+        ),
+      );
+      Navigator.of(context).pop();
+    }
+
     return Center(
       child: ListView(
         children: <Widget>[
@@ -61,7 +83,10 @@ class MemberScreenActions extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () => showDialog(
               context: context,
-              builder: (BuildContext context) => KickBanMemberDialog(),
+              builder: (BuildContext context) => KickBanMemberDialog(
+                kickFunction: _kickMember,
+                banFunction: _banMember,
+              ),
             ),
           ),
         ],

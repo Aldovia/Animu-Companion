@@ -1,5 +1,6 @@
 import 'package:animu/screens/member_screen/member_screen_actions.dart';
 import 'package:animu_common/animu_common.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,7 @@ class MemberScreenInfo extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 60.0,
                   backgroundColor: Theme.of(context).canvasColor,
-                  backgroundImage: NetworkImage(member.avatarURL),
+                  backgroundImage: CachedNetworkImageProvider(member.avatarURL),
                 ),
               ),
               SizedBox(

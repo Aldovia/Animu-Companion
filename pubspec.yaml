@@ -25,6 +25,7 @@ dependencies:
   bloc: ^2.0.0
   flutter_bloc: ^2.0.0
   qr_code_scanner: ^0.0.12
+  cached_network_image: ^2.0.0
   animu_common:
     path: ../animu_common
 

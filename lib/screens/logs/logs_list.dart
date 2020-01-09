@@ -1,4 +1,5 @@
 import 'package:animu_common/animu_common.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -42,8 +43,8 @@ class _LogsListState extends State<LogsList> {
                     : Card(
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(state.logs[i].imageUrl),
+                            backgroundImage: CachedNetworkImageProvider(
+                                state.logs[i].imageUrl),
                             child: Align(
                               child: CircleAvatar(
                                 backgroundColor: Colors.blue,

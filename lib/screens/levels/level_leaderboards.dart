@@ -1,5 +1,6 @@
 import 'package:animu/screens/member_screen/member_screen.dart';
 import 'package:animu_common/animu_common.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,7 +41,7 @@ class LevelLeaderboards extends StatelessWidget {
                         tag: 'level_avatar_${state.leaderboardMembers[i].id}',
                         child: CircleAvatar(
                           radius: 16.0,
-                          backgroundImage: NetworkImage(
+                          backgroundImage: CachedNetworkImageProvider(
                               state.leaderboardMembers[i].avatarURL),
                         ),
                       ),
