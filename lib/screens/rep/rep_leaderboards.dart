@@ -1,3 +1,4 @@
+import 'package:animu/screens/member_screen/member_screen.dart';
 import 'package:animu_common/animu_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,10 +33,13 @@ class RepLeaderboards extends StatelessWidget {
                           SizedBox(
                             width: 10.0,
                           ),
-                        CircleAvatar(
-                          radius: 16,
-                          backgroundImage: NetworkImage(
-                              state.leaderboardMembers[i].avatarURL),
+                        Hero(
+                          tag: 'rep_avatar_${state.leaderboardMembers[i].id}',
+                          child: CircleAvatar(
+                            radius: 16.0,
+                            backgroundImage: NetworkImage(
+                                state.leaderboardMembers[i].avatarURL),
+                          ),
                         ),
                       ],
                     ),
@@ -47,6 +51,16 @@ class RepLeaderboards extends StatelessWidget {
                     state.leaderboardMembers[i].reputation.toString(),
                     style: Theme.of(context).textTheme.subtitle,
                   ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MemberScreen(
+                          member: state.leaderboardMembers[i],
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),

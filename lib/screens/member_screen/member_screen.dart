@@ -24,7 +24,7 @@ class MemberScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Hero(
-                  tag: 'avatar_${member.id}',
+                  tag: ['level_avatar_${member.id}', 'rep_avatar_${member.id}'],
                   child: CircleAvatar(
                     radius: 60.0,
                     backgroundColor: Theme.of(context).canvasColor,
