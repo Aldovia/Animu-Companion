@@ -18,7 +18,9 @@ class MemberDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Image(
-              image: NetworkImage(member.profileWallpaperURL),
+              image: NetworkImage(member.profileWallpaperURL != ''
+                  ? member.profileWallpaperURL
+                  : 'https://verdict4u.files.wordpress.com/2016/09/google-now-wallpaper-2.png'),
             ),
             Padding(
               padding: const EdgeInsets.only(
